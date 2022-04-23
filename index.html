@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html>
+
+<textarea id="entradaTexto" cols="30" rows="10" placeholder="digite seu texto aqui..."/></textarea></textarea>
+<textarea id="campoEncriptado" cols="30" rows="10"/></textarea><p></p>
+&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+<button onClick="encriptarTexto();">Encriptar!</button>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+<button onClick="desencriptarTexto();">Desencriptar!</button>
+
+<p></p>
+
+<!--<input id="campoDesencriptado"/>/!-->
+
+
+
+<script>
+//XXABCDEFGH
+const alfabeto="abcdefghijklmnopqrstuvwxyz1234567890";
+
+const tamCifraMinima=5;
+const tamCifraMaxima=10;
+const enter="ZZenterr";
+const espaco="ZZespaco";
+var  cifra1="";
+var  cifra2 ="";
+
+
+
+
+function variarCifras(){
+
+var numAleatorioCifra = Math.floor(Math.random() * (tamCifraMaxima - tamCifraMinima) + tamCifraMinima);
+
+
+    for(var i=0;i<numAleatorioCifra;i++)
+    {
+        cifra1+=alfabeto[Math.floor(Math.random() * (alfabeto.length - 0) + 0)];
+
+    }
+
+numAleatorioCifra = Math.floor(Math.random() * (tamCifraMaxima - tamCifraMinima) + tamCifraMinima);
+    for(var i=0;i<numAleatorioCifra;i++)
+    {
+        cifra2+=alfabeto[Math.floor(Math.random() * (alfabeto.length - 0) + 0)];
+
+    }
+
+}
+
+
+function embaralharTextoBinario(textoBinario){
+var textoEncriptado="";
+
+    for (var i = 0; i < textoBinario.length;) {            
+         textoEncriptado+=textoBinario[textoBinario.length-i-1];
+
+        i++;
+     }
+
+campoEncriptado.value="";
+
+    for (var i = 0; i < textoEncriptado.length; i++) {
+
+        if(textoEncriptado[i].charCodeAt(0)==48){
+        campoEncriptado.value+=cifra1;
+        }
+
+        if(textoEncriptado[i].charCodeAt(0)==49){
+        campoEncriptado.value+=cifra2;
+        }
+
+    }
+
+}
+
+function encriptarTexto()
+{
+
+// var textoCifrado = document.getElementById("campoEncriptado");
+// var textoDecifrado = document.getElementById("entradaTexto").value;
+var textoTemporario="";
+textoTemporario = entradaTexto.value;
+entradaTexto.value="";
+entradaTexto.value="";
+
+
+variarCifras();
+alert("Anote as 2 chaves para desencriptar futuramente:"+ "\n" + "CHAVE1: " + cifra1 +"\n" + "CHAVE2: " + cifra2);
+
+
+    for (var i = 0; i < textoTemporario.length; i++)  // trata espaços do texto
+    {
+        if(parseInt(textoTemporario[i].charCodeAt(0),10)>=65&&parseInt(textoTemporario[i].charCodeAt(0),10)<=90||parseInt(textoTemporario[i].charCodeAt(0),10)>=49&&parseInt(textoTemporario[i].charCodeAt(0),10)<=57 || parseInt(textoTemporario[i].charCodeAt(0),10)>=97&&parseInt(textoTemporario[i].charCodeAt(0),10)<=122){
+
+                    /// aqui dentro há letras  de A-a a Z-z e números de 0-9
+    entradaTexto.value+=textoTemporario[i];
+
+
+         }
+       
+
+        else{
+            
+            if(parseInt(textoTemporario[i].charCodeAt(0),10)==10) { entradaTexto.value+=enter; continue;}//alert("ENTER"); return;}
+
+            if(parseInt(textoTemporario[i].charCodeAt(0),10)==32) {entradaTexto.value+=espaco; continue;}//alert("ESPAÇO"); return;}
+
+            alert("Digite apenas letras entra A-a e números entre 0-9!");
+            entradaTexto.value="";
+            textoTemporario="";
+            return;
+            
+            }
+    }
+
+
+
+textoTemporario="";
+
+    for (var i = 0; i < entradaTexto.value.length; i++) {
+      textoTemporario += entradaTexto.value[i].charCodeAt(0).toString(2) + " ";
+     
+     }
+
+
+embaralharTextoBinario(textoTemporario);
+
+    for (var i = 0; i < textoTemporario.length; i++) {
+      //campoEncriptado.value += textoTemporario[i]; //.charCodeAt(0).toString(2) + " ";  //O método charCodeAt() retorna um número inteiro entre 0 e 65535 que representa a unidade de código UTF-16 no índice fornecido.
+      }
+
+}
+
+
+function desencriptarTexto(binary) 
+{
+
+var caracter="";
+
+campoEncriptado.value="";       // limpa para receber novo texto
+
+var chave1 = cifra1; // 0
+var chave2 = cifra2; // 1
+var contadorChave1=0;
+var contadorChave2=0;
+var stringEncriptada="";
+
+chave1=window.prompt("Digite a CHAVE1:");
+chave2=window.prompt("Digite a CHAVE2:");
+
+
+    for(var i = 0; i <= entradaTexto.value.length;   i++)
+    {
+
+        if(contadorChave1>chave1.length){contadorChave1==0;}
+        if(contadorChave2>chave2.length){contadorChave2==0;}
+
+        if(entradaTexto.value[i]==chave1[contadorChave1])
+        {
+
+        contadorChave1++;
+
+            if(contadorChave1==chave1.length){
+                campoEncriptado.value+="0";
+                contadorChave1=0;
+                contadorChave2=0;
+            }
+        }
+
+        if(entradaTexto.value[i]==chave2[contadorChave2])
+        {
+
+        contadorChave2++;
+            if(contadorChave2==chave2.length){
+            campoEncriptado.value+="1";
+            contadorChave1=0;
+            contadorChave2=0;
+           }
+
+
+        }
+    }     
+         
+
+textTemporario2="";
+
+    for (var i = 0; i < campoEncriptado.value.length;) {    // inverte a string encriptada e armazena ela em textTemporario2
+
+    textTemporario2+=campoEncriptado.value[campoEncriptado.value.length-i-1];
+
+    i++;
+    }
+
+campoEncriptado.value="";
+
+
+        
+var subString="";
+var contadorChave=0;
+var subStringEspaco=espaco;
+var subStringEnter=enter;
+var contadorSubstring=0;
+
+    for (var i = 0; i <= textTemporario2.length;i++) {              //reverte binario final
+    subString+=textTemporario2[i];
+    contadorChave++;
+       
+      if(contadorChave==7){       //COMPARACAO COM TAMANHO DA CIFRA
+      //   alert(String.fromCharCode(parseInt(subString, 2)));
+      campoEncriptado.value+=String.fromCharCode(parseInt(subString, 2));
+      subString="";
+      contadorChave=0;
+       }
+
+            
+    }
+
+    variarCifras();     // muda cifras sem precisar de f5
+
+}//desencriptar fim
+
+
+
+
+</script>
+
+</html>
