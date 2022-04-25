@@ -17,8 +17,8 @@
 //XXABCDEFGH
 const alfabeto="abcdefghijklmnopqrstuvwxyz1234567890";
 
-const tamCifraMinima=5;
-const tamCifraMaxima=10;
+const tamCifraMinima=10;
+const tamCifraMaxima=15;
 const enter="ZZenterr";
 const espaco="ZZespaco";
 var  cifra1="";
@@ -81,8 +81,10 @@ function encriptarTexto()
 var textoTemporario="";
 textoTemporario = entradaTexto.value;
 entradaTexto.value="";
-entradaTexto.value="";
 
+
+cifra1="";
+cifra2="";
 
 variarCifras();
 alert("Anote as 2 chaves para desencriptar futuramente:"+ "\n" + "CHAVE1: " + cifra1 +"\n" + "CHAVE2: " + cifra2);
@@ -214,6 +216,9 @@ var contadorSubstring=0;
 
             
     }
+
+	cifra1="";
+	cifra2="";
 
     variarCifras();     // muda cifras sem precisar de f5
 
