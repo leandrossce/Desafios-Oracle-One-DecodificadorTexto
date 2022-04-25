@@ -29,7 +29,7 @@ var  cifra2 ="";
 
 function variarCifras(){
 
-var numAleatorioCifra = Math.floor(Math.random() * (tamCifraMaxima - tamCifraMinima) + tamCifraMinima);
+var numAleatorioCifra = Math.floor((Math.random() * (tamCifraMaxima - tamCifraMinima)) + tamCifraMinima);
 
 
     for(var i=0;i<numAleatorioCifra;i++)
@@ -38,7 +38,7 @@ var numAleatorioCifra = Math.floor(Math.random() * (tamCifraMaxima - tamCifraMin
 
     }
 
-numAleatorioCifra = Math.floor(Math.random() * (tamCifraMaxima - tamCifraMinima) + tamCifraMinima);
+numAleatorioCifra = Math.floor((Math.random() * (tamCifraMaxima - tamCifraMinima)) + tamCifraMinima);
     for(var i=0;i<numAleatorioCifra;i++)
     {
         cifra2+=alfabeto[Math.floor(Math.random() * (alfabeto.length - 0) + 0)];
