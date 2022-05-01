@@ -2,7 +2,7 @@
 <html>
 <head>    <meta charset="utf-8"></head>
 
-<textarea id="entradaTexto" cols="30" rows="10" placeholder="digite seu texto aqui..."/></textarea></textarea>
+<textarea id="entradaTexto" cols="30" rows="10" placeholder="digite seu texto aqui..."/ required></textarea></textarea>
 <textarea id="campoResultado" cols="30" rows="10"/></textarea><p></p>
 &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
 <button onClick="encriptarTexto();">Encriptar!</button>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
@@ -19,46 +19,28 @@ var campoEncriptado;
 var campoTexto;
 
 const alfabeto="abcdefghijklmnopqrstuvwxyz1234567890ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-const tamCifraMinima=10;
-const tamCifraMaxima=15;
-const enter="ZZenterr";
+//const tamCifraMinima=27;
+//const enter="ZZenterr";
 const espaco="ZZespaco";
-var  cifra1="";
-var  cifra2 ="";
 
-
+var  cifra1="XwYqQp47aQpfglTorijHkdjBKXwYqQp"; 
+var  cifra2 ="XwYqQpjHkdjBKHjoehlhoaXwYqQp";
 
 function variarCifras(){
 
-var numAleatorioCifra = Math.floor((Math.random() * (tamCifraMaxima - tamCifraMinima)) + tamCifraMinima);
+var chaveAleatoria="";
 
-
-    for(var i=0;i<numAleatorioCifra;i++)
+   
+    for(var i=0;i<15;i++)
     {
-        cifra1+=alfabeto[Math.floor(Math.random() * (alfabeto.length - 0) + 0)];
+        chaveAleatoria+=alfabeto[Math.floor(Math.random() * (alfabeto.length))];
 
     }
 
-numAleatorioCifra = Math.floor((Math.random() * (tamCifraMaxima - tamCifraMinima)) + tamCifraMinima);
-    for(var i=0;i<numAleatorioCifra;i++)
-    {
-        cifra2+=alfabeto[Math.floor(Math.random() * (alfabeto.length - 0) + 0)];
-
-    }
-
-}
-/*function toUnicode2(str) {   //code retirado de https://gist.github.com/littlee/f726f61b1e0abd319da4
-    return str.split('').map(function (value, index, array) {
-        var temp = value.charCodeAt(0).toString(16).toUpperCase();
-        if (temp.length > 2) {
-            return '\\u' + temp;
-        }
-        return value;
-    }).join('');
+return chaveAleatoria;
 }
 
-var str = '转换成';
-*/
+
 function unicodeParaTexto(char){    //código adaptado de https://stackoverflow.com/questions/7063255/how-can-i-convert-a-string-into-a-unicode-character 
 
 return eval("'" + char + "'");
@@ -100,9 +82,14 @@ var textoEncriptado="";
 
 campoEncriptado="";
 
+
+    
+campoEncriptado+=variarCifras();
+
+     
+
     for (var i = 0; i < textoEncriptado.length; i++) {
 
-//alert(textoEncriptado[i].charCodeAt(0));
 
         if( parseInt(textoEncriptado[i].charCodeAt(0))==48){
         campoEncriptado+=cifra1;
@@ -119,12 +106,12 @@ campoEncriptado="";
         }
 
         else{campoEncriptado+=textoEncriptado[i];
+
              //   alert("Aqui Resto + " + textoEncriptado[i]);
         }
 
+       
     }
-
-  // alert(campoEncriptado);
 
 
 }
@@ -132,8 +119,9 @@ campoEncriptado="";
 function encriptarTexto()
 {
 
-// var textoCifrado = document.getElementById("campoEncriptado");
-// var textoDecifrado = document.getElementById("entradaTexto").value;
+if(entradaTexto.value.length==0)
+    return;
+
 
 var textoTemporario="";
 
@@ -142,10 +130,6 @@ entradaTexto.value="";
 campoTexto="";
 campoResultado.value="";
 
-  cifra1=""; // zera variavel global
-  cifra2 ="";// zera variavel global
-variarCifras();
-alert("Anote as 2 chaves para desencriptar futuramente:"+ "\n" + "CHAVE1: " + cifra1 +"\n" + "CHAVE2: " + cifra2);
 
 for (var i = 0; i < textoTemporario.length; i++) {
 
@@ -188,10 +172,6 @@ var chave1 = cifra1; // 0
 var chave2 = cifra2; // 1
 var contadorChave1=0;
 var contadorChave2=0;
-
-
-chave1=window.prompt("Digite a CHAVE1:");
-chave2=window.prompt("Digite a CHAVE2:");
 
 
 
@@ -263,9 +243,6 @@ campoEncriptado="";
        
      }
 
-  cifra1=""; // zera variavel global
-  cifra2 ="";// zera variavel global
-    variarCifras();     // muda cifras sem precisar de f5
 
 }//desencriptar fim
 
