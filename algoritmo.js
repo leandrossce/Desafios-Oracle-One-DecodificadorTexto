@@ -233,12 +233,12 @@ campoEncriptado="";
      }
 
 
-//desencriptar fim
+}//desencriptar fim
 
 
 function copiarTexto() {
-    navigator.clipboard.writeText(campoResultado.value)
+    navigator.clipboard.writeText(campoResultado.value);
+    
+  
 
   }
-
-}
