@@ -4,46 +4,62 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-       <link rel="stylesheet" href="index.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@200&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="index.css">
     <title>Decodificador de Texto</title>
   </head>
   <body>
     <header>
-    
+      
+      <div class="alura">
+        <img  src="alura.png">
+      </div>
+
     </header>
     <main id="main">
-      
-      
-      <section>
-        <div>
-          <textarea class="content3" id="entradaTexto" placeholder="digite seu texto aqui..."></textarea>
-        </div>
-        
-          <div class="box-button-cont">
-            <button class="btn-encrypt" onclick="encriptarTexto()">Criptografar</button>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-            <button class="btn-decrypt" onclick="desencriptarTexto()">Descriptografar</button>
-          
-          </div>
-      </section>
 
+     
+      <div class="principal">
+     
+          <div class="painel">
+              <div>
+                <textarea class="content3" id="entradaTexto" onkeydown="ocultarmensagens()"  onkeyup="ocultarmensagens()"placeholder="digite ou cole o seu texto aqui..."></textarea>
+              </div>
+            
+                <div>                   
+                    <textarea class="content4" id="campoResultado"></textarea>
+                          
+                 </div>      
+          </div>  
+      </div> 
 
-      <section>
-           <div>                   
-              <textarea class="content4" id="campoResultado"></textarea>
-                     
-            </div>      
-         
-           <div>
-               <button class="btn-copy" id="botaoCopiar" alt="Copiar texto criptografado" onclick="copiarTexto()">Copiar</button>
-           </div>
-       </section>
-       
+      <div class="box-button-cont">
+        <div><button class="btn-encrypt" onclick="encriptarTexto()">Criptografar</button></div>
+        <div><button class="btn-decrypt" onclick="desencriptarTexto()">Descriptografar</button></div>
+      
+      </div>
+      <div>
+        <button class="btn-copy" id="botaoCopiar" alt="Copiar texto criptografado" onclick="copiarTexto()">Copiar</button>
+      </div>
+      <div class="divImgBoneco">
+        <img  src="figuraPrincipal.png">
+      </div>
+      <div>
+        <p class="textoAbaixoBoneco"> Nenhuma mensagem Encontrada</p>
+        <p class="textoAbaixoBoneco2"> Digite um texto que você deseja criptografar ou descriptografar</p>
+      </div>
+      <div>
+        <p class="msgCopiado">Copiado para área de tranferência</p>
+      </div>
+      <footer>
+      
+        <a href="https://github.com/leandrossce/">WEBMASTER: LEANDRO SOARES</a>
+
+      </footer> 
+      
+     
     </main>
-    <footer>
-      <a href="https://github.com/leandrossce/">WEBMASTER: LEANDRO SOARES</a>
-    </footer> 
-    
+ 
     
     <script src="algoritmo.js"></script>
   </body>

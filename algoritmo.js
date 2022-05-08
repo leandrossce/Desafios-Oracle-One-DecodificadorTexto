@@ -1,5 +1,6 @@
 var campoEncriptado;
 var campoTexto;
+const imagemTema = document.querySelector('.divImgBoneco');
 
 const alfabeto="abcdefghijklmnopqrstuvwxyz1234567890ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 //const tamCifraMinima=27;
@@ -8,6 +9,9 @@ const espaco="ZZespaco";
 
 var  cifra1="XwYqQp47aQpfglTorijHkdjBKXwYqQp"; 
 var  cifra2 ="XwYqQpjHkdjBKHjoehlhoaXwYqQp";
+
+
+
 
 function variarCifras(){
 
@@ -99,12 +103,38 @@ campoEncriptado+=variarCifras();
 
 }
 
+function ocultarmensagens(){
+    document.querySelector('.msgCopiado').style.display  = 'none';
+    if(!(entradaTexto.value.length==0)){
+
+    
+    imagemTema.style.display = 'none';
+    document.querySelector('.textoAbaixoBoneco').style.display = 'none';
+    document.querySelector('.textoAbaixoBoneco2').style.display = 'none';
+   
+    }
+    else{
+        campoResultado.value="";
+        imagemTema.style.display = 'initial';
+        document.querySelector('.textoAbaixoBoneco').style.display = 'initial';
+        document.querySelector('.textoAbaixoBoneco2').style.display = 'initial';
+    }
+
+}
+
 function encriptarTexto()
 {
 
+   
     if(entradaTexto.value==""){return;}
-    else
+    else{
     document.querySelector('.btn-copy').style.display = 'initial';
+    imagemTema.style.display = 'none';
+    document.querySelector('.msgCopiado').style.display  = 'none';
+    document.querySelector('.textoAbaixoBoneco').style.display = 'none';
+    document.querySelector('.textoAbaixoBoneco2').style.display = 'none';
+  
+    }
 
 if(entradaTexto.value.length==0)
     return;
@@ -151,6 +181,7 @@ embaralharTextoBinario(textoTemporario);
 function desencriptarTexto(binary) 
 {
     document.querySelector('.btn-copy').style.display = 'none';
+    document.querySelector('.msgCopiado').style.display  = 'none';
     
 
 var caracter="";
@@ -237,8 +268,22 @@ campoEncriptado="";
 
 
 function copiarTexto() {
+
+  
     navigator.clipboard.writeText(campoResultado.value);
+    document.querySelector('.btn-copy').style.display = 'none';
+    document.querySelector('.msgCopiado').style.display  = 'initial';
+
+    setTimeout(function(){   ocultarmensagens();  
+    },3000);
+
     
+    
+  }
+
   
 
-  }
+  
+
+
+
